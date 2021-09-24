@@ -22,4 +22,7 @@ public class Marka {//Opel
 
     @OneToMany(mappedBy = "marka")
     private List<Car> cars;
+
+    @OneToMany(mappedBy = "marka")
+    private List<Model> models;
 }
