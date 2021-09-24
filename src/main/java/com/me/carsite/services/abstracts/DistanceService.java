@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface DistanceService {
     List<DistanceDto> getAll();
+    DistanceDto add(DistanceDto distanceDto);
 }
