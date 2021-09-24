@@ -25,4 +25,12 @@ public class DistanceManager implements DistanceService {
                 .collect(Collectors.toList());
         return resultDtos;
     }
+
+    @Override
+    public DistanceDto add(DistanceDto distanceDto) {
+        Distance distance = modelMapper.map(distanceDto,Distance.class);
+        distance.setId(distanceDto.getId());
+        distance.setKm(distanceDto.getKm());
+        return modelMapper.map(distanceRepo.save(distance) ,DistanceDto.class);
+    }
 }
