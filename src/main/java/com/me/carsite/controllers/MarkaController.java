@@ -1,6 +1,6 @@
 package com.me.carsite.controllers;
 
-import com.me.carsite.dtos.MarkdaDto;
+import com.me.carsite.dtos.MarkaDto;
 import com.me.carsite.services.abstracts.MarkaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class MarkaController {
 
 
     @GetMapping("getAll")
-    public ResponseEntity<List<MarkdaDto>> getAll(){
+    public ResponseEntity<List<MarkaDto>> getAll(){
         return ResponseEntity.ok(markaService.getAll());
     }
 }
