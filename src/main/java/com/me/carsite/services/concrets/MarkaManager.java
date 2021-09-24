@@ -1,6 +1,6 @@
 package com.me.carsite.services.concrets;
 
-import com.me.carsite.dtos.MarkdaDto;
+import com.me.carsite.dtos.MarkaDto;
 import com.me.carsite.models.Marka;
 import com.me.carsite.repositories.MarkaRepo;
 import com.me.carsite.services.abstracts.MarkaService;
@@ -16,12 +16,15 @@ import java.util.stream.Collectors;
 public class MarkaManager implements MarkaService {
     private final MarkaRepo markaRepo;
     private final ModelMapper modelMapper;
+
+
+
     @Override
-    public List<MarkdaDto> getAll() {
+    public List<MarkaDto> getAll() {
         List<Marka> markaList = markaRepo.findAll();
-        List<MarkdaDto> resultDtos = markaList
+        List<MarkaDto> resultDtos = markaList
                 .stream()
-                .map(marka -> modelMapper.map(marka,MarkdaDto.class))
+                .map(marka -> modelMapper.map(marka, MarkaDto.class))
                 .collect(Collectors.toList());
         return resultDtos;
     }
