@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "models")
+@Table(name = "model")
 @Entity
 public class Model {//Astra
     @Id
@@ -22,4 +22,8 @@ public class Model {//Astra
 
     @OneToMany(mappedBy = "model")
     private List<Car> cars;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "marka_id")
+    private Marka marka;
 }
