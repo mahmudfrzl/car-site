@@ -17,12 +17,9 @@ public class CarManager implements CarService {
     private final CarRepo carRepo;
     private final YearRepo yearRepo;
     private final ModelRepo modelRepo;
-    private final MinAmountRepo minAmountRepo;
-    private final MaxAmountRepo maxAmountRepo;
     private final MarkaRepo markaRepo;
     private final GearTypeRepo gearTypeRepo;
     private final FuelRepo fuelRepo;
-    private final DistanceRepo distanceRepo;
     private final CityRepo cityRepo;
     private final PhotoRepo photoRepo;
     @Override
@@ -41,13 +38,6 @@ public class CarManager implements CarService {
         model.setId(carDto.getId());
         car.setModel(model);
 
-        MinAmount minAmount = new MinAmount();
-        minAmount.setId(carDto.getMinAmountId());
-        car.setMinAmount(minAmount);
-
-        MaxAmount maxAmount = new MaxAmount();
-        maxAmount.setId(carDto.getMaxAmountId());
-        car.setMaxAmount(maxAmount);
 
         Marka marka = new Marka();
         marka.setId(carDto.getMarkaId());
@@ -61,9 +51,6 @@ public class CarManager implements CarService {
         fuel.setId(carDto.getFuelId());
         car.setFuel(fuel);
 
-        Distance distance = new Distance();
-        distance.setId(carDto.getDistanceId());
-        car.setDistance(distance);
 
         City city = new City();
         city.setId(carDto.getCityId());

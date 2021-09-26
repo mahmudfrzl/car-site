@@ -34,6 +34,9 @@ public class Car {
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
+    @Column(name = "distance",nullable = false)
+    private Long distance;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="year_id", nullable = false)
     private Year year;
@@ -41,15 +44,6 @@ public class Car {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id", nullable = false)
     private Model model;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "min_amount_id", nullable = false)
-    private MinAmount minAmount;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "max_amount_id", nullable = false)
-    private MaxAmount maxAmount;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -65,9 +59,7 @@ public class Car {
     @JoinColumn(name = "fuel_id", nullable = false)
     private Fuel fuel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "distance_id", nullable = false)
-    private Distance distance;
+
 
 
     @ManyToOne(fetch = FetchType.LAZY)

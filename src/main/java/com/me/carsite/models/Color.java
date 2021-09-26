@@ -18,7 +18,7 @@ public class Color {
     @Column(name = "id")
     private Long id;
     @Column(name = "color_type",nullable = false)
-    private Long colorType;
+    private String colorType;
 
     @OneToMany(mappedBy = "color")
     private List<Car> cars;

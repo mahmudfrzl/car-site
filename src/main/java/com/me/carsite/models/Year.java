@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -19,7 +19,7 @@ public class Year {
     @Column(name = "id")
     private Long id;
     @Column(name = "date",nullable = false)
-    private LocalDate date;
+    private short date ;
     @OneToMany(mappedBy = "year")
     private List<Car> cars;
 }
