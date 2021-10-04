@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/link")
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ public class LinkController {
     private final LinkService linkService;
 
     @PostMapping("/add")
-    public ResponseEntity<LinkAddDto> addLink(@RequestBody LinkAddDto linkAddDto){
+    public ResponseEntity<LinkAddDto> addLink(@Valid @RequestBody LinkAddDto linkAddDto){
         return ResponseEntity.ok(linkService.addLink(linkAddDto));
     }
 }

@@ -1,5 +1,6 @@
 package com.me.carsite.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "model")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
 public class Model {//Astra
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "name",nullable = false)
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "model")

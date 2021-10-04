@@ -1,5 +1,6 @@
 package com.me.carsite.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "year")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
+
 public class Year {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

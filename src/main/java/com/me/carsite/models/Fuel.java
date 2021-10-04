@@ -1,5 +1,6 @@
 package com.me.carsite.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "fuel")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
 public class Fuel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,6 @@ public class Fuel {
     @Column(name = "fuel_type",nullable = false)
     private String fuelType;
 
-    @OneToMany(mappedBy = "fuel")
+    @OneToMany(mappedBy = "fuel",fetch = FetchType.LAZY)
     private List<Car> cars;
 }

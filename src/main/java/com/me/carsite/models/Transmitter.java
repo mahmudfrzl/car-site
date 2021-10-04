@@ -1,5 +1,6 @@
 package com.me.carsite.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "transmitter")
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
 public class Transmitter {//ötürücü-arxa ön
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

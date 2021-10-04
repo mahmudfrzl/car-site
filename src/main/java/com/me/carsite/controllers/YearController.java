@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 @RestController
 @RequestMapping("/years")
@@ -19,11 +20,11 @@ public class YearController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<YearDto>  save(@RequestBody YearDto yearDto) {
+    public ResponseEntity<YearDto>  save(@Valid @RequestBody YearDto yearDto) {
         return ResponseEntity.ok(yearService.save(yearDto));
     }
     @PutMapping("/update")
-    public ResponseEntity<YearDto> update(@RequestParam Long id,@RequestBody YearDto yearDto) {
+    public ResponseEntity<YearDto> update(@Valid @RequestParam Long id,@Valid @RequestBody YearDto yearDto) {
         return ResponseEntity.ok(yearService.update(id,yearDto));
     }
 }

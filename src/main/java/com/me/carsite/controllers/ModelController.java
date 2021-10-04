@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +17,7 @@ public class ModelController {
     private final ModelService modelService;
 
     @GetMapping("/getByMarkaId")
-    public List<ModelDto> getByMarkaId(@RequestParam Long markaId) {
+    public List<ModelDto> getByMarkaId(@Valid @RequestParam Long markaId) {
         return modelService.getByMarkaId( markaId);
     }
 
