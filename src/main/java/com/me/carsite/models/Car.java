@@ -1,10 +1,7 @@
 package com.me.carsite.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
@@ -16,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "car")
 @Entity
+@Builder
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

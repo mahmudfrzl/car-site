@@ -3,6 +3,7 @@ package com.me.carsite.services.concrets;
 import com.me.carsite.configurations.results.Result;
 import com.me.carsite.configurations.results.SuccessResult;
 import com.me.carsite.dtos.carDto.CarAddDto;
+import com.me.carsite.exceptions.CarNotFoundException;
 import com.me.carsite.services.abstracts.CarService;
 import com.me.carsite.dtos.carDto.CarDto;
 import com.me.carsite.models.*;
@@ -27,54 +28,33 @@ public class CarManager implements CarService {
     private final FuelRepo fuelRepo;
     private final CityRepo cityRepo;
     private final PhotoRepo photoRepo;
+    private final TransmitterRepo transmitterRepo;
+    private final ColorRepo colorRepo;
 
     @Override
     public Result saveCar(CarAddDto carDto){
-        Car car = modelMapper.map(carDto,Car.class);
+        Car car = new Car();
         car.setCarAbout(carDto.getCarAbout());
         car.setCarShowroom(carDto.getCarShowroom());
         car.setBarter(carDto.getBarter());
         car.setCredit(carDto.getCredit());
         car.setPrice(carDto.getPrice());
         car.setDistance(carDto.getDistance());
-
-//        Year year = new Year();
-//        year.setId(carDto.getYearId());
-//        car.setYear(year);
         car.setYear(yearRepo.findById(carDto.getYearId()).get());
-//        Model model = new Model();
-//        model.setId(carDto.getId());
-//        car.setModel(model);
-
         car.setModel(modelRepo.findById(carDto.getModelId()).get());
-
-        Marka marka = new Marka();
-        marka.setId(carDto.getMarkaId());
-        car.setMarka(marka);
-
-        GearType gearType = new GearType();
-        gearType.setId(carDto.getGearTypeId());
-        car.setGearType(gearType);
-
-        Fuel fuel = new Fuel();
-        fuel.setId(carDto.getFuelId());
-        car.setFuel(fuel);
+        car.setMarka(markaRepo.findById(carDto.getMarkaId()).get());
+        car.setGearType(gearTypeRepo.findById(carDto.getGearTypeId()).get());
+        car.setFuel(fuelRepo.findById(carDto.getFuelId()).get());
+        car.setCity(cityRepo.findById(carDto.getCityId()).get());
+        car.setTransmitter(transmitterRepo.findById(carDto.getTransmitterId()).get());
+        car.setColor(colorRepo.findById(carDto.getColorId()).get());
 
 
-        City city = new City();
-        city.setId(carDto.getCityId());
-        car.setCity(city);
 
-        Transmitter transmitter = new Transmitter();
-        transmitter.setId(carDto.getTransmitterId());
-        car.setTransmitter(transmitter);
 
-        Color color = new Color();
-        color.setId(carDto.getColorId());
-        car.setColor(color);
 
 //        car.setPhotos((List<Photo>) photoRepo.findById(carDto.getPhotoId()).get());
-        modelMapper.map(carRepo.save(car),CarDto.class);
+        carRepo.save(car);
         return new SuccessResult("Success");
 
     }
@@ -85,23 +65,22 @@ public class CarManager implements CarService {
         List<CarDto> resultDtos = cars
                 .stream()
                 .map(car -> {
-                    CarDto carDto = new CarDto();
-                    carDto.setId(car.getId());
-                    carDto.setCarShowroom(car.getCarShowroom());
-                    carDto.setCarAbout(car.getCarAbout());
-                    carDto.setBarter(car.getBarter());
-                    carDto.setPrice(car.getPrice());
-                    carDto.setCredit(car.getCredit());
-                    carDto.setDistance(car.getDistance());
-                    carDto.setCityId(car.getCity().getId());
-                    carDto.setColorId( car.getColor().getId());
-                    carDto.setFuelId( car.getFuel().getId());
-                    carDto.setGearTypeId( car.getGearType().getId());
-                    carDto.setMarkaId( car.getMarka().getId());
-                    carDto.setModelId(car.getModel().getId());
-                    carDto.setYearId(car.getYear().getId());
-                    carDto.setTransmitterId( car.getTransmitter().getId());
-                    return carDto;
+                    return CarDto.builder()
+                    .id(car.getId())
+                    .carShowroom(car.getCarShowroom())
+                    .carAbout(car.getCarAbout())
+                    .barter(car.getBarter())
+                    .price(car.getPrice())
+                    .credit(car.getCredit())
+                    .distance(car.getDistance())
+                    .cityId(car.getCity().getId())
+                    .colorId( car.getColor().getId())
+                    .fuelId( car.getFuel().getId())
+                    .gearTypeId( car.getGearType().getId())
+                    .markaId( car.getMarka().getId())
+                    .modelId(car.getModel().getId())
+                    .yearId(car.getYear().getId())
+                     .transmitterId( car.getTransmitter().getId()).build();
                 })
                 .collect(Collectors.toList());
         return resultDtos;
@@ -114,32 +93,64 @@ public class CarManager implements CarService {
             carRepo.deleteById(id);
             return true;
         }
-        throw new Exception();
+        throw new CarNotFoundException("Car not found");
     }
 
     @Override
     public CarDto getById(Long id) throws Exception {//Exception Handler add ele
         Optional<Car> car = carRepo.findById(id);
         if(car.isPresent()){
-            CarDto carDto = new CarDto();
-            carDto.setId(car.get().getId());
-            carDto.setCarShowroom(car.get().getCarShowroom());
-            carDto.setYearId(car.get().getYear().getId());
-            carDto.setCarAbout(car.get().getCarAbout());
-            carDto.setBarter(car.get().getBarter());
-            carDto.setPrice(car.get().getPrice());
-            carDto.setCredit(car.get().getCredit());
-            carDto.setDistance(car.get().getDistance());
-            carDto.setCityId(car.get().getCity().getId());
-            carDto.setColorId( car.get().getColor().getId());
-            carDto.setFuelId( car.get().getFuel().getId());
-            carDto.setGearTypeId( car.get().getGearType().getId());
-            carDto.setMarkaId( car.get().getMarka().getId());
-            carDto.setModelId(car.get().getModel().getId());
-            carDto.setYearId(car.get().getYear().getId());
-            carDto.setTransmitterId( car.get().getTransmitter().getId());
-            return carDto;
+            return CarDto.builder()
+                    .id(car.get().getId())
+                    .carShowroom(car.get().getCarShowroom())
+                    .carAbout(car.get().getCarAbout())
+                    .barter(car.get().getBarter())
+                    .price(car.get().getPrice())
+                    .credit(car.get().getCredit())
+                    .distance(car.get().getDistance())
+                    .cityId(car.get().getCity().getId())
+                    .colorId( car.get().getColor().getId())
+                    .fuelId( car.get().getFuel().getId())
+                    .gearTypeId(car.get().getGearType().getId())
+                    .markaId(car.get().getMarka().getId())
+                    .modelId(car.get().getModel().getId())
+                    .yearId(car.get().getYear().getId())
+                    .transmitterId(car.get().getTransmitter().getId()).build();
         }
-        throw new Exception();
+        throw new CarNotFoundException("Car Not Found");
     }
 }
+
+
+
+
+//        Year year = new Year();
+//        year.setId(carDto.getYearId());
+//        car.setYear(year);
+//        Model model = new Model();
+//        model.setId(carDto.getId());
+//        car.setModel(model);
+//Marka marka = new Marka();
+//        marka.setId(carDto.getMarkaId());
+//        car.setMarka(marka);
+//
+//        GearType gearType = new GearType();
+//        gearType.setId(carDto.getGearTypeId());
+//        car.setGearType(gearType);
+//
+//        Fuel fuel = new Fuel();
+//        fuel.setId(carDto.getFuelId());
+//        car.setFuel(fuel);
+//
+//
+//
+//        City city = new City();
+//        city.setId(carDto.getCityId());
+//        car.setCity(city);
+//        Transmitter transmitter = new Transmitter();
+//        transmitter.setId(carDto.getTransmitterId());
+//        car.setTransmitter(transmitter);
+//        Color color = new Color();
+//        color.setId(carDto.getColorId());
+//        car.setColor(color);
+////        car.setPhotos((List<Photo>
