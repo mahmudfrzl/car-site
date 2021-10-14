@@ -7,7 +7,7 @@ import com.me.carsite.dtos.carDto.CarDto;
 import java.util.List;
 
 public interface CarService {
-    Result saveCar(CarAddDto carDto);
+    CarAddDto saveCar(CarAddDto carDto);
    List<CarDto>  getAll();
    Boolean delete(Long id) throws Exception;
    CarDto getById(Long id) throws Exception;

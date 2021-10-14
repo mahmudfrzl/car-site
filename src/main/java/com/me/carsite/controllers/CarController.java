@@ -17,7 +17,7 @@ import java.util.List;
 public class CarController {
     private final CarService carService;
     @PostMapping("/save")
-    public ResponseEntity<Result> saveCar(@Valid @RequestBody CarAddDto carDto){
+    public ResponseEntity<CarAddDto> saveCar(@Valid @RequestBody CarAddDto carDto){
         return ResponseEntity.ok(carService.saveCar(carDto));
     }
 

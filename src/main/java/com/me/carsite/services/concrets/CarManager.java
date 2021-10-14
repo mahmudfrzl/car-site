@@ -3,6 +3,7 @@ package com.me.carsite.services.concrets;
 import com.me.carsite.configurations.results.Result;
 import com.me.carsite.configurations.results.SuccessResult;
 import com.me.carsite.dtos.carDto.CarAddDto;
+import com.me.carsite.dtos.converters.CarDtoConverter;
 import com.me.carsite.exceptions.CarNotFoundException;
 import com.me.carsite.services.abstracts.CarService;
 import com.me.carsite.dtos.carDto.CarDto;
@@ -30,9 +31,10 @@ public class CarManager implements CarService {
     private final PhotoRepo photoRepo;
     private final TransmitterRepo transmitterRepo;
     private final ColorRepo colorRepo;
+    private final CarDtoConverter carDtoConverter;
 
     @Override
-    public Result saveCar(CarAddDto carDto){
+    public CarAddDto saveCar(CarAddDto carDto){
         Car car = new Car();
         car.setCarAbout(carDto.getCarAbout());
         car.setCarShowroom(carDto.getCarShowroom());
@@ -54,8 +56,8 @@ public class CarManager implements CarService {
 
 
 //        car.setPhotos((List<Photo>) photoRepo.findById(carDto.getPhotoId()).get());
-        carRepo.save(car);
-        return new SuccessResult("Success");
+
+        return carDtoConverter.convert(carRepo.save(car));
 
     }
 

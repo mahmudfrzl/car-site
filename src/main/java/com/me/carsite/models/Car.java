@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "car")
 @Entity
-@Builder
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
