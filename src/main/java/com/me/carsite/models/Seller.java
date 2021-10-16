@@ -2,6 +2,7 @@ package com.me.carsite.models;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Table(name = "seller")
 @Entity
 @PrimaryKeyJoinColumn(name="id")
+@Builder
 public class Seller extends User{
 
 

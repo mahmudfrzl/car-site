@@ -1,0 +1,59 @@
+2021-10-02 05:56:55.413  INFO 15792 --- [restartedMain] com.me.carsite.CarSiteApplication        : Starting CarSiteApplication using Java 16.0.1 on DESKTOP-F6VMU9K with PID 15792 (F:\CarSite\target\classes started by hp in F:\CarSite)
+2021-10-02 05:56:55.511  INFO 15792 --- [restartedMain] com.me.carsite.CarSiteApplication        : No active profile set, falling back to default profiles: default
+2021-10-02 05:56:55.617  INFO 15792 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-10-02 05:56:55.617  INFO 15792 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-10-02 05:56:57.870  INFO 15792 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-10-02 05:56:58.285  INFO 15792 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 391 ms. Found 17 JPA repository interfaces.
+2021-10-02 05:56:59.190  INFO 15792 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2021-10-02 05:56:59.202  INFO 15792 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-10-02 05:56:59.202  INFO 15792 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.52]
+2021-10-02 05:56:59.406  INFO 15792 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-10-02 05:56:59.407  INFO 15792 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3787 ms
+2021-10-02 05:56:59.732  INFO 15792 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-10-02 05:56:59.884  INFO 15792 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-10-02 05:57:00.143  INFO 15792 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-10-02 05:57:00.360  INFO 15792 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-10-02 05:57:00.826  INFO 15792 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-10-02 05:57:00.845  INFO 15792 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2021-10-02 05:57:03.722  INFO 15792 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-10-02 05:57:03.727  INFO 15792 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-02 05:57:04.907  WARN 15792 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-02 05:57:05.154  INFO 15792 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2021-10-02 05:57:05.221  INFO 15792 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-10-02 05:57:05.387  INFO 15792 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-10-02 05:57:05.501  WARN 15792 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2021-10-02 05:57:06.509  INFO 15792 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2021-10-02 05:57:06.509  INFO 15792 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-10-02 05:57:06.549  INFO 15792 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-10-02 05:57:06.593  INFO 15792 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-10-02 05:57:06.763  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUsingGET_1
+2021-10-02 05:57:06.766  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUsingGET_2
+2021-10-02 05:57:06.772  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUsingGET_3
+2021-10-02 05:57:06.787  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUsingGET_4
+2021-10-02 05:57:06.827  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_1
+2021-10-02 05:57:06.836  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_2
+2021-10-02 05:57:06.842  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingDELETE_1
+2021-10-02 05:57:06.848  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_3
+2021-10-02 05:57:06.856  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_4
+2021-10-02 05:57:06.861  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_5
+2021-10-02 05:57:06.864  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_6
+2021-10-02 05:57:06.868  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_7
+2021-10-02 05:57:06.871  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_8
+2021-10-02 05:57:06.874  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_9
+2021-10-02 05:57:06.877  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_10
+2021-10-02 05:57:06.880  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_11
+2021-10-02 05:57:06.881  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_12
+2021-10-02 05:57:06.884  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_13
+2021-10-02 05:57:06.890  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_14
+2021-10-02 05:57:06.892  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_15
+2021-10-02 05:57:06.895  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_16
+2021-10-02 05:57:06.897  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_17
+2021-10-02 05:57:06.899  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_18
+2021-10-02 05:57:06.902  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: handleUsingGET_19
+2021-10-02 05:57:06.906  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUsingGET_5
+2021-10-02 05:57:06.917  INFO 15792 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getAllUsingGET_6
+2021-10-02 05:57:06.956  INFO 15792 --- [restartedMain] com.me.carsite.CarSiteApplication        : Started CarSiteApplication in 12.467 seconds (JVM running for 15.052)
+2021-10-02 05:57:07.255  INFO 15792 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-02 05:57:07.255  INFO 15792 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-10-02 05:57:07.264  INFO 15792 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2021-10-02 05:57:07.343  WARN 15792 --- [registrationTask1] d.c.b.a.c.r.ApplicationRegistrator       : Failed to register application as Application(name=spring-boot-application, managementUrl=http://DESKTOP-F6VMU9K:8081/actuator, healthUrl=http://DESKTOP-F6VMU9K:8081/actuator/health, serviceUrl=http://DESKTOP-F6VMU9K:8081/) at spring-boot-admin ([http://localhost:8081/instances]): 404 : [{"timestamp":"2021-10-02T12:57:07.309+00:00","status":404,"error":"Not Found","message":"No message available","path":"/instances"}]. Further attempts are logged on DEBUG level
