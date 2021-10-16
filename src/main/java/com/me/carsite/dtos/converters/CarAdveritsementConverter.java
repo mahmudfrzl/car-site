@@ -1,6 +1,6 @@
 package com.me.carsite.dtos.converters;
 
-import com.me.carsite.dto.CarAdvertisementAddDto;
+import com.me.carsite.dtos.advertisementDto.CarAdvertisementAddDto;
 import com.me.carsite.models.CarAdvertisement;
 import org.springframework.stereotype.Component;
 

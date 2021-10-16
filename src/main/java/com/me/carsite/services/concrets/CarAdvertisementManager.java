@@ -1,6 +1,7 @@
 package com.me.carsite.services.concrets;
 
-import com.me.carsite.dto.CarAdvertisementAddDto;
+import com.me.carsite.dtos.advertisementDto.CarAdvertisementAddDto;
+import com.me.carsite.dtos.advertisementDto.CarAdvertisementListDto;
 import com.me.carsite.dtos.converters.CarAdveritsementConverter;
 import com.me.carsite.models.CarAdvertisement;
 import com.me.carsite.repositories.CarAdvertisementRepo;
@@ -9,6 +10,9 @@ import com.me.carsite.repositories.SellerRepo;
 import com.me.carsite.services.abstracts.CarAdvertisementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,4 +31,21 @@ public class CarAdvertisementManager implements CarAdvertisementService {
 
         return carAdveritsementConverter.convert(carAdvertisementRepo.save(carAdvertisement) );
     }
+
+    @Override
+    public List<CarAdvertisementListDto> getAll() {
+         List<CarAdvertisement> carAdvertisements = carAdvertisementRepo.findAll();
+        List<CarAdvertisementListDto> resultDtos = carAdvertisements.stream()
+                .map(carAdvertisement -> {
+                    return CarAdvertisementListDto.builder()
+                            .id(carAdvertisement.getId())
+                            .explanation(carAdvertisement.getExplanation())
+                            .releaseDate(carAdvertisement.getReleaseDate())
+                            .sellerId(carAdvertisement.getSeller().getId())
+                            .carId(carAdvertisement.getCar().getId()).build();
+                }).collect(Collectors.toList());
+        return resultDtos;
+    }
+
+
 }

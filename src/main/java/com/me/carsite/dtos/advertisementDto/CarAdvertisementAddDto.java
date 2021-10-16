@@ -1,4 +1,4 @@
-package com.me.carsite.dto;
+package com.me.carsite.dtos.advertisementDto;
 
 import com.me.carsite.models.Car;
 import com.me.carsite.models.Seller;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class CarAdvertisementAddDto {
-    private LocalDate releaseDate;
+    private LocalDate releaseDate = LocalDate.now();
     private String explanation;
     private Long carId;
     private Long sellerId;
