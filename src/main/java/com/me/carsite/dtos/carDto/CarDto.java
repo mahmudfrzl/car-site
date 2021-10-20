@@ -3,6 +3,8 @@ package com.me.carsite.dtos.carDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -18,6 +20,7 @@ public class CarDto {
     private Boolean barter;
     private String carAbout;
     private BigDecimal price;
+    @NotNull(message = "Masinin ili secilmelidir")
     private Long yearId;
     private Long markaId;
     private Long modelId;

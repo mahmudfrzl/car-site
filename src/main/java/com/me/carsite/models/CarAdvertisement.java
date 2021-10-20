@@ -1,14 +1,14 @@
 package com.me.carsite.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "car_advertisement")
@@ -26,10 +26,13 @@ public class CarAdvertisement {
 
     @OneToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
     @JoinColumn(name ="car_id", nullable = false)
+    @ToString.Exclude
     private Car car;
 
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "seller_id", nullable = false)
+    @ToString.Exclude
     private Seller seller;
+
 }

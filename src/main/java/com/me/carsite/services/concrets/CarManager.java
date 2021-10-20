@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,26 +34,24 @@ public class CarManager implements CarService {
     private final ColorRepo colorRepo;
     private final CarDtoConverter carDtoConverter;
 
+    @Transactional
     @Override
-    public CarAddDto saveCar(CarAddDto carDto){
-        Car car = new Car();
-        car.setCarAbout(carDto.getCarAbout());
-        car.setCarShowroom(carDto.getCarShowroom());
-        car.setBarter(carDto.getBarter());
-        car.setCredit(carDto.getCredit());
-        car.setPrice(carDto.getPrice());
-        car.setDistance(carDto.getDistance());
-        car.setYear(yearRepo.findById(carDto.getYearId()).get());
-        car.setModel(modelRepo.findById(carDto.getModelId()).get());
-        car.setMarka(markaRepo.findById(carDto.getMarkaId()).get());
-        car.setGearType(gearTypeRepo.findById(carDto.getGearTypeId()).get());
-        car.setFuel(fuelRepo.findById(carDto.getFuelId()).get());
-        car.setCity(cityRepo.findById(carDto.getCityId()).get());
-        car.setTransmitter(transmitterRepo.findById(carDto.getTransmitterId()).get());
-        car.setColor(colorRepo.findById(carDto.getColorId()).get());
-
-
-
+    public CarAddDto saveCar(CarAddDto carDto) {
+        Car car = Car.builder()
+                .carAbout(carDto.getCarAbout())
+                .carShowroom(carDto.getCarShowroom())
+                .barter(carDto.getBarter())
+                .credit(carDto.getCredit())
+                .price(carDto.getPrice())
+                .distance(carDto.getDistance())
+                .year(yearRepo.findById(carDto.getYearId()).get())
+                .model(modelRepo.findById(carDto.getModelId()).get())
+                .marka(markaRepo.findById(carDto.getMarkaId()).get())
+                .gearType(gearTypeRepo.findById(carDto.getGearTypeId()).get())
+                .fuel(fuelRepo.findById(carDto.getFuelId()).get())
+                .city(cityRepo.findById(carDto.getCityId()).get())
+                .transmitter(transmitterRepo.findById(carDto.getTransmitterId()).get())
+                .color(colorRepo.findById(carDto.getColorId()).get()).build();
 
 
 //        car.setPhotos((List<Photo>) photoRepo.findById(carDto.getPhotoId()).get());
@@ -64,34 +63,33 @@ public class CarManager implements CarService {
     @Override
     public List<CarDto> getAll() {
         List<Car> cars = carRepo.findAll();
-        List<CarDto> resultDtos = cars
+        return cars
                 .stream()
                 .map(car -> {
                     return CarDto.builder()
-                    .id(car.getId())
-                    .carShowroom(car.getCarShowroom())
-                    .carAbout(car.getCarAbout())
-                    .barter(car.getBarter())
-                    .price(car.getPrice())
-                    .credit(car.getCredit())
-                    .distance(car.getDistance())
-                    .cityId(car.getCity().getId())
-                    .colorId( car.getColor().getId())
-                    .fuelId( car.getFuel().getId())
-                    .gearTypeId( car.getGearType().getId())
-                    .markaId( car.getMarka().getId())
-                    .modelId(car.getModel().getId())
-                    .yearId(car.getYear().getId())
-                     .transmitterId( car.getTransmitter().getId()).build();
+                            .id(car.getId())
+                            .carShowroom(car.getCarShowroom())
+                            .carAbout(car.getCarAbout())
+                            .barter(car.getBarter())
+                            .price(car.getPrice())
+                            .credit(car.getCredit())
+                            .distance(car.getDistance())
+                            .cityId(car.getCity().getId())
+                            .colorId(car.getColor().getId())
+                            .fuelId(car.getFuel().getId())
+                            .gearTypeId(car.getGearType().getId())
+                            .markaId(car.getMarka().getId())
+                            .modelId(car.getModel().getId())
+                            .yearId(car.getYear().getId())
+                            .transmitterId(car.getTransmitter().getId()).build();
                 })
                 .collect(Collectors.toList());
-        return resultDtos;
     }
 
     @Override
     public Boolean delete(Long id) throws Exception {//Exception Handler add ele
         Optional<Car> car = carRepo.findById(id);
-        if(car.isPresent()){
+        if (car.isPresent()) {
             carRepo.deleteById(id);
             return true;
         }
@@ -101,7 +99,7 @@ public class CarManager implements CarService {
     @Override
     public CarDto getById(Long id) throws Exception {//Exception Handler add ele
         Optional<Car> car = carRepo.findById(id);
-        if(car.isPresent()){
+        if (car.isPresent()) {
             return CarDto.builder()
                     .id(car.get().getId())
                     .carShowroom(car.get().getCarShowroom())
@@ -111,8 +109,8 @@ public class CarManager implements CarService {
                     .credit(car.get().getCredit())
                     .distance(car.get().getDistance())
                     .cityId(car.get().getCity().getId())
-                    .colorId( car.get().getColor().getId())
-                    .fuelId( car.get().getFuel().getId())
+                    .colorId(car.get().getColor().getId())
+                    .fuelId(car.get().getFuel().getId())
                     .gearTypeId(car.get().getGearType().getId())
                     .markaId(car.get().getMarka().getId())
                     .modelId(car.get().getModel().getId())
@@ -122,8 +120,6 @@ public class CarManager implements CarService {
         throw new CarNotFoundException("Car Not Found");
     }
 }
-
-
 
 
 //        Year year = new Year();
