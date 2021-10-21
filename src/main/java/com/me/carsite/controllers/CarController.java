@@ -1,6 +1,5 @@
 package com.me.carsite.controllers;
 
-import com.me.carsite.configurations.results.Result;
 import com.me.carsite.dtos.carDto.CarAddDto;
 import com.me.carsite.services.abstracts.CarService;
 import com.me.carsite.dtos.carDto.CarDto;

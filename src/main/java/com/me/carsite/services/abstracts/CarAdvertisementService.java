@@ -8,4 +8,5 @@ import java.util.List;
 public interface CarAdvertisementService {
     CarAdvertisementAddDto save(CarAdvertisementAddDto carAdvertisementAddDto);
     List<CarAdvertisementListDto> getAll();
+    CarAdvertisementListDto getById(Long id);
 }

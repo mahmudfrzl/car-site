@@ -1,5 +1,6 @@
 package com.me.carsite.exceptions;
 
+import com.me.carsite.models.Car;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,10 +35,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(CarNotFoundException.class)
     private ResponseEntity<ExceptionResponse> carNotFoundExceptions(Exception exception, WebRequest webRequest){
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(), "404");
 
         return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(SellerNotFoundException.class)
+    private ResponseEntity<ExceptionResponse> sellerNotFoundExceptions(Exception exception, WebRequest webRequest){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(), "404");
+
+        return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
 }

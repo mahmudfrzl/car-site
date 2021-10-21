@@ -2,6 +2,7 @@ package com.me.carsite.services.concrets;
 
 import com.me.carsite.dtos.sellerDto.SellerAddDto;
 import com.me.carsite.dtos.sellerDto.SellerListDto;
+import com.me.carsite.exceptions.SellerNotFoundException;
 import com.me.carsite.models.Seller;
 import com.me.carsite.repositories.SellerRepo;
 import com.me.carsite.services.abstracts.SellerService;
@@ -31,5 +32,12 @@ public class SellerManager implements SellerService {
                 .map(seller -> modelMapper.map(seller,SellerListDto.class))
                 .collect(Collectors.toList());
         return resultDtos;
+    }
+
+    protected Seller getBySellerId(Long id){
+        Seller seller = sellerRepo.findById(id).orElseThrow(
+                () -> new SellerNotFoundException("Seller Not Found")
+        );
+        return seller;
     }
 }

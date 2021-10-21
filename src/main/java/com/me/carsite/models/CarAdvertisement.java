@@ -35,4 +35,10 @@ public class CarAdvertisement {
     @ToString.Exclude
     private Seller seller;
 
+    public CarAdvertisement(LocalDate releaseDate, String explanation, Car car, Seller seller) {
+        this.releaseDate = releaseDate;
+        this.explanation = explanation;
+        this.car = car;
+        this.seller = seller;
+    }
 }

@@ -1,14 +1,12 @@
 package com.me.carsite.services.concrets;
 
-import com.me.carsite.configurations.results.Result;
-import com.me.carsite.configurations.results.SuccessResult;
 import com.me.carsite.dtos.carDto.CarAddDto;
 import com.me.carsite.dtos.converters.CarDtoConverter;
 import com.me.carsite.exceptions.CarNotFoundException;
-import com.me.carsite.services.abstracts.CarService;
 import com.me.carsite.dtos.carDto.CarDto;
 import com.me.carsite.models.*;
 import com.me.carsite.repositories.*;
+import com.me.carsite.services.abstracts.CarService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -118,6 +116,14 @@ public class CarManager implements CarService {
                     .transmitterId(car.get().getTransmitter().getId()).build();
         }
         throw new CarNotFoundException("Car Not Found");
+    }
+
+
+    protected Car getByCarId(Long id)  {
+       Car  car = carRepo.findById(id).orElseThrow(
+                () -> new CarNotFoundException("Car Not found")
+        );
+        return car;
     }
 }
 
