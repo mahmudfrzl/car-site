@@ -48,4 +48,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(CarAdvertisementNotFoundException.class)
+    private ResponseEntity<ExceptionResponse> carAdvertisementNotFoundExceptions(Exception exception, WebRequest webRequest){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(), exception.getMessage(), "404");
+
+        return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
 }
