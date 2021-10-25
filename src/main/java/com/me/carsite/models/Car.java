@@ -39,32 +39,32 @@ public class Car {
     @Column(name = "distance", nullable = false)
     private Long distance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "year_id", nullable = false)
     private Year year;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id", nullable = false)
     private Model model;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "marka_id", nullable = false)
     private Marka marka;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "gear_type_id", nullable = false)
     private GearType gearType;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fuel_id", nullable = false)
     private Fuel fuel;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "transmitter_id", nullable = false)
     private Transmitter transmitter;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "color_id", nullable = false)
     private Color color;
 
@@ -75,13 +75,7 @@ public class Car {
     @OneToOne(mappedBy = "car")
     private CarAdvertisement carAdvertisement;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Car car = (Car) o;
-        return id != null && Objects.equals(id, car.id);
-    }
+
 
 
 }

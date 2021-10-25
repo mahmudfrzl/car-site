@@ -24,13 +24,13 @@ public class CarAdvertisement {
     @Column(name = "explanation")
     private String explanation;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
+    @OneToOne
     @JoinColumn(name ="car_id", nullable = false)
     @ToString.Exclude
     private Car car;
 
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
     @ToString.Exclude
     private Seller seller;

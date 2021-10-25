@@ -55,33 +55,15 @@ public class CarManager implements CarService {
 //        car.setPhotos((List<Photo>) photoRepo.findById(carDto.getPhotoId()).get());
 
         return carDtoConverter.convert(carRepo.save(car));
-
+      //  return CarMapper.INSTANCE.carToCarAddDto(carRepo.save(car));
     }
 
     @Override
     public List<CarDto> getAll() {
-        List<Car> cars = carRepo.findAll();
-        return cars
-                .stream()
-                .map(car -> {
-                    return CarDto.builder()
-                            .id(car.getId())
-                            .carShowroom(car.getCarShowroom())
-                            .carAbout(car.getCarAbout())
-                            .barter(car.getBarter())
-                            .price(car.getPrice())
-                            .credit(car.getCredit())
-                            .distance(car.getDistance())
-                            .cityId(car.getCity().getId())
-                            .colorId(car.getColor().getId())
-                            .fuelId(car.getFuel().getId())
-                            .gearTypeId(car.getGearType().getId())
-                            .markaId(car.getMarka().getId())
-                            .modelId(car.getModel().getId())
-                            .yearId(car.getYear().getId())
-                            .transmitterId(car.getTransmitter().getId()).build();
-                })
+        return   carRepo.findAll()
+                .stream().map(carDtoConverter::convertToListDto)
                 .collect(Collectors.toList());
+
     }
 
     @Override
@@ -96,26 +78,10 @@ public class CarManager implements CarService {
 
     @Override
     public CarDto getById(Long id) throws Exception {//Exception Handler add ele
-        Optional<Car> car = carRepo.findById(id);
-        if (car.isPresent()) {
-            return CarDto.builder()
-                    .id(car.get().getId())
-                    .carShowroom(car.get().getCarShowroom())
-                    .carAbout(car.get().getCarAbout())
-                    .barter(car.get().getBarter())
-                    .price(car.get().getPrice())
-                    .credit(car.get().getCredit())
-                    .distance(car.get().getDistance())
-                    .cityId(car.get().getCity().getId())
-                    .colorId(car.get().getColor().getId())
-                    .fuelId(car.get().getFuel().getId())
-                    .gearTypeId(car.get().getGearType().getId())
-                    .markaId(car.get().getMarka().getId())
-                    .modelId(car.get().getModel().getId())
-                    .yearId(car.get().getYear().getId())
-                    .transmitterId(car.get().getTransmitter().getId()).build();
-        }
-        throw new CarNotFoundException("Car Not Found");
+        Car  car = carRepo.findById(id).orElseThrow(
+                () -> new CarNotFoundException("Car Not found")
+        );
+        return carDtoConverter.convertToListDto(car);
     }
 
 
@@ -158,3 +124,28 @@ public class CarManager implements CarService {
 //        color.setId(carDto.getColorId());
 //        car.setColor(color);
 ////        car.setPhotos((List<Photo>
+
+//    public List<CarDto> getAll() {
+//        List<Car> cars = carRepo.findAll();
+//        return cars
+//                .stream()
+//                .map(car -> {
+//                    return CarDto.builder()
+//                            .id(car.getId())
+//                            .carShowroom(car.getCarShowroom())
+//                            .carAbout(car.getCarAbout())
+//                            .barter(car.getBarter())
+//                            .price(car.getPrice())
+//                            .credit(car.getCredit())
+//                            .distance(car.getDistance())
+//                            .cityId(car.getCity().getId())
+//                            .colorId(car.getColor().getId())
+//                            .fuelId(car.getFuel().getId())
+//                            .gearTypeId(car.getGearType().getId())
+//                            .markaId(car.getMarka().getId())
+//                            .modelId(car.getModel().getId())
+//                            .yearId(car.getYear().getId())
+//                            .transmitterId(car.getTransmitter().getId()).build();
+//                })
+//                .collect(Collectors.toList());
+//    }

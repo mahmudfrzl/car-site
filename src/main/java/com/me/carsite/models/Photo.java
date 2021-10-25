@@ -19,7 +19,7 @@ public class Photo {
     @Column(name = "url",nullable = false)
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "car_id",nullable = false)
     private Car car;
 }

@@ -20,11 +20,11 @@ public class Mobile {
     private Long number;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "seller_id")
     private Seller seller;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
 }

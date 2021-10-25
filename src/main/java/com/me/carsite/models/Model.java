@@ -25,7 +25,7 @@ public class Model {//Astra
     @OneToMany(mappedBy = "model")
     private List<Car> cars;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "marka_id")
     private Marka marka;
 }

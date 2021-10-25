@@ -31,8 +31,6 @@ public class YearManager implements YearService {
     @Override
     public YearDto save(YearDto yearDto) {
         Year year = modelMapper.map(yearDto,Year.class);
-        year.setId(yearDto.getId());
-        year.setDate(yearDto.getDate());
         return modelMapper.map(yearRepo.save(year),YearDto.class);
     }
 

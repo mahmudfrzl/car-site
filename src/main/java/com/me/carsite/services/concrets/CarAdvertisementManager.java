@@ -67,17 +67,10 @@ public class CarAdvertisementManager implements CarAdvertisementService {
 
     @Override
     public CarAdvertisementListDto getById(Long id) {
-        Optional<CarAdvertisement> optionalCarAdvertisement = carAdvertisementRepo.findById(id);
-        if (optionalCarAdvertisement.isPresent()) {
-            return CarAdvertisementListDto.builder()
-                    .id(optionalCarAdvertisement.get().getId())
-                    .carId(optionalCarAdvertisement.get().getCar().getId())
-                    .explanation(optionalCarAdvertisement.get().getExplanation())
-                    .sellerId(optionalCarAdvertisement.get().getSeller().getId())
-                    .releaseDate(optionalCarAdvertisement.get().getReleaseDate())
-                    .build();
-        }
-        return null;//Throw add ele
+        CarAdvertisement carAdvertisement = carAdvertisementRepo.findById(id).orElseThrow(
+                () -> new CarAdvertisementNotFoundException("Advertisement can not find")
+        );
+        return carAdveritsementConverter.convertToListDto(carAdvertisement);
     }
 
 

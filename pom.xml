@@ -17,8 +17,21 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>16</java.version>
+
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>

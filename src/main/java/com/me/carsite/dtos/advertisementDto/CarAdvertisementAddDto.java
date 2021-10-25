@@ -1,5 +1,6 @@
 package com.me.carsite.dtos.advertisementDto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.me.carsite.models.Car;
 import com.me.carsite.models.Seller;
 import lombok.*;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class CarAdvertisementAddDto {
+    @JsonIgnore
     private LocalDate releaseDate = LocalDate.now();
     private String explanation;
     private Long carId;

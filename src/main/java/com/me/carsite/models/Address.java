@@ -17,7 +17,7 @@ public class Address {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
 }
