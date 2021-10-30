@@ -1,6 +1,9 @@
 package com.me.carsite.configurations.results;
 
 
+import org.springframework.http.HttpStatus;
+
+import java.time.LocalDateTime;
 public class SuccessDataResult<T> extends DataResult<T>{
 
     public SuccessDataResult(T data, String message) {
@@ -18,4 +21,11 @@ public class SuccessDataResult<T> extends DataResult<T>{
         super(null, true);
     }
 
+    public SuccessDataResult(T data, String message, LocalDateTime responseAt) {
+        super(data, true, message, responseAt);
+    }
+
+    public SuccessDataResult(T data, String message, LocalDateTime responseAt, HttpStatus status, Integer statusCode) {
+        super(data, true, message, responseAt, status,statusCode);
+    }
 }

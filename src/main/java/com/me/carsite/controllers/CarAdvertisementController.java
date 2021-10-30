@@ -1,5 +1,6 @@
 package com.me.carsite.controllers;
 
+import com.me.carsite.configurations.results.DataResult;
 import com.me.carsite.dtos.advertisementDto.CarAdvertisementAddDto;
 import com.me.carsite.dtos.advertisementDto.CarAdvertisementListDto;
 import com.me.carsite.services.abstracts.CarAdvertisementService;
@@ -18,7 +19,7 @@ public class CarAdvertisementController {
     private final CarAdvertisementService carAdvertisementService;
 
     @PostMapping("/save")
-    public ResponseEntity<CarAdvertisementAddDto>  save(@Valid @RequestBody CarAdvertisementAddDto carAdvertisementAddDto){
+    public ResponseEntity<DataResult<CarAdvertisementAddDto>>  save(@Valid @RequestBody CarAdvertisementAddDto carAdvertisementAddDto){
         return ResponseEntity.ok(carAdvertisementService.save(carAdvertisementAddDto));
     }
     @GetMapping("/getAll")

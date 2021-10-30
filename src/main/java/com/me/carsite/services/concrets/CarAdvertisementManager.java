@@ -1,5 +1,7 @@
 package com.me.carsite.services.concrets;
 
+import com.me.carsite.configurations.results.DataResult;
+import com.me.carsite.configurations.results.SuccessDataResult;
 import com.me.carsite.dtos.advertisementDto.CarAdvertisementAddDto;
 import com.me.carsite.dtos.advertisementDto.CarAdvertisementListDto;
 import com.me.carsite.dtos.converters.CarAdveritsementConverter;
@@ -11,20 +13,18 @@ import com.me.carsite.repositories.CarAdvertisementRepo;
 import com.me.carsite.repositories.CarRepo;
 import com.me.carsite.repositories.SellerRepo;
 import com.me.carsite.services.abstracts.CarAdvertisementService;
-import com.me.carsite.services.abstracts.CarService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CarAdvertisementManager implements CarAdvertisementService {
-    private final CarRepo carRepo;
-    private final SellerRepo sellerRepo;
     private final CarAdveritsementConverter carAdveritsementConverter;
     private final CarAdvertisementRepo carAdvertisementRepo;
     private final CarManager carManager;
@@ -33,7 +33,7 @@ public class CarAdvertisementManager implements CarAdvertisementService {
 
     @Transactional
     @Override
-    public CarAdvertisementAddDto save(CarAdvertisementAddDto carAdvertisementAddDto) {
+    public DataResult<CarAdvertisementAddDto> save(CarAdvertisementAddDto carAdvertisementAddDto) {
         Car car = carManager.getByCarId(carAdvertisementAddDto.getCarId());
         Seller seller = sellerManager.getBySellerId(carAdvertisementAddDto.getSellerId());
 
@@ -44,8 +44,13 @@ public class CarAdvertisementManager implements CarAdvertisementService {
                 car,
                 seller
                );
-
-        return carAdveritsementConverter.convertToAddDto(carAdvertisementRepo.save(carAdvertisement));
+            carAdvertisementAddDto= carAdveritsementConverter.convertToAddDto(carAdvertisementRepo.save(carAdvertisement));
+        return new SuccessDataResult<CarAdvertisementAddDto>(
+                carAdvertisementAddDto,
+                "Car advertisement has been successfully created"
+                , LocalDateTime.now(),
+                HttpStatus.CREATED,
+                HttpStatus.CREATED.value());
     }
 
     @Override
@@ -54,15 +59,7 @@ public class CarAdvertisementManager implements CarAdvertisementService {
                 .stream().map(carAdveritsementConverter::convertToListDto)
                 .collect(Collectors.toList());
 
-//        List<CarAdvertisement> carAdvertisements = carAdvertisementRepo.findAll();
-//        List<CarAdvertisementListDto> resultDtos = carAdvertisements.stream()
-//                .map(carAdvertisement -> CarAdvertisementListDto.builder()
-//                        .id(carAdvertisement.getId())
-//                        .explanation(carAdvertisement.getExplanation())
-//                        .releaseDate(carAdvertisement.getReleaseDate())
-//                        .sellerId(carAdvertisement.getSeller().getId())
-//                        .carId(carAdvertisement.getCar().getId()).build()).collect(Collectors.toList());
-//        return resultDtos;
+
     }
 
     @Override
@@ -75,7 +72,15 @@ public class CarAdvertisementManager implements CarAdvertisementService {
 
 
 }
-
+//        List<CarAdvertisement> carAdvertisements = carAdvertisementRepo.findAll();
+//        List<CarAdvertisementListDto> resultDtos = carAdvertisements.stream()
+//                .map(carAdvertisement -> CarAdvertisementListDto.builder()
+//                        .id(carAdvertisement.getId())
+//                        .explanation(carAdvertisement.getExplanation())
+//                        .releaseDate(carAdvertisement.getReleaseDate())
+//                        .sellerId(carAdvertisement.getSeller().getId())
+//                        .carId(carAdvertisement.getCar().getId()).build()).collect(Collectors.toList());
+//        return resultDtos;
 
 //    CarAdvertisement carAdvertisement = new CarAdvertisement(
 //                carAdvertisementAddDto.getExplanation(),
